@@ -1,0 +1,33 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+    "width": 1000,
+    "height": 500,
+    "title": "Average CO₂ Emissions per capita in Australia",
+    "data": {
+        "url": "https://raw.githubusercontent.com/anay0012/FIT3179-Assignment-2/main/data/co-emissions-per-capita%20new.csv"
+    },
+    "transform": [
+        {
+            "filter": "lower(trim(datum.Entity)) === 'australia'"
+        },
+        {
+            "calculate": "toNumber(datum.Year)",
+            "as": "YearNum"
+        },
+        {
+            "calculate": "toNumber(replace(datum['Annual CO2 emissions (per capita)'], '\\.', ''))",
+            "as": "Emissions"
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "YearNum",
+            "type": "quantitative"
+        },
+        "y": {
+            "field": "Emissions",
+            "type": "quantitative"
+        }
+    }
+}

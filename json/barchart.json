@@ -1,0 +1,125 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 1000,
+    "height": 500,
+    "title": {
+        "text": "Ocean Temperatures at Surrounding Countries"
+    },
+    "data": {
+        "url": "https://raw.githubusercontent.com/anay0012/FIT3179-Assignment-2/refs/heads/main/data/global_bleaching_environmental.csv"
+    },
+    "layer": [
+        {
+            "mark": "bar",
+            "encoding": {
+                "x": {
+                    "field": "Ocean_Name",
+                    "type": "nominal",
+                    "title": "Ocean name"
+                },
+                "y": {
+                    "field": "Temperature_Celsius",
+                    "type": "quantitative",
+                    "title": "Ocean Temperature (Celsius)",
+                    "stack": null
+                },
+                "tooltip": [
+                    {
+                        "field": "Temperature_Celsius",
+                        "type": "quantitative",
+                        "title": "Temperature (Celsius):"
+                    },
+                    {
+                        "field": "Turbidity",
+                        "type": "quantitative"
+                    }
+                ]
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "right",
+                "baseline": "middle",
+                "fontSize": 14
+            },
+            "encoding": {
+                "text": {
+                    "value": "Turbidity reflets how cloudy, opaque or dirty the water is."
+                }
+            }
+        },
+        {
+            "mark": "rule",
+            "encoding": {
+                "y": {
+                    "datum": 23,
+                    "type": "quantitative"
+                },
+                "color": {
+                    "value": "black"
+                },
+                "size": {
+                    "value": 2
+                }
+            }
+        },
+        {
+            "mark": "rule",
+            "encoding": {
+                "y": {
+                    "datum": 26,
+                    "type": "quantitative"
+                },
+                "color": {
+                    "value": "black"
+                },
+                "size": {
+                    "value": 2
+                }
+            }
+        }
+    ],
+    "params": [
+        {
+            "name": "Date_Year",
+            "bind": {
+                "input": "select",
+                "options": [
+                    null,
+                    "1980",
+                    "1985",
+                    "1990",
+                    "1995",
+                    "2000",
+                    "2005",
+                    "2010",
+                    "2015",
+                    "2020"
+                ],
+                "labels": [
+                    "All Years",
+                    "1980",
+                    "1985",
+                    "1990",
+                    "1995",
+                    "2000",
+                    "2005",
+                    "2010",
+                    "2015",
+                    "2020"
+                ],
+                "name": "Year:"
+            }
+        }
+    ],
+    "transform": [
+        {
+            "calculate": "datum.Temperature_Minimum - 273.15",
+            "as": "Temperature_Celsius"
+        },
+        {
+            "filter": "Date_Year == null || datum.Date_Year == toNumber(Date_Year)"
+        }
+    ]
+}
