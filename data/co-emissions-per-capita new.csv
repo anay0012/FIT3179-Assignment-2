@@ -1,4 +1,4 @@
-Entity	Year	Annual COâ‚‚ emissions (per capita)
+Entity	Year	Annual_CO2_emissions_(per_capita)
 Afghanistan	2022	29536375
 Africa	2022	99422127
 Albania	2022	17432004
@@ -26599,3 +26599,4 @@ Singapore	1750	0
 United Kingdom	1750	10019125
 Upper-middle-income countries	1750	0
 World	1750	12480065
+
