@@ -2,7 +2,6 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 1000,
   "height": 500,
-  "title": "Coral Reef Bleaching Around the World",
   "projection": {
     "type": "equirectangular"
   },
@@ -25,19 +24,9 @@
       "data": {
         "url": "https://raw.githubusercontent.com/anay0012/FIT3179-Assignment-2/refs/heads/main/data/global_bleaching_environmental.csv"
       },
-      "params": [
-        {
-          "name": "percentage_bleaching",
-          "select": {
-            "type": "point",
-            "fields": ["Percentage_Bleaching"]
-          },
-          "bind":"scales"
-        }
-      ],
       "mark": {
         "type": "square",
-        "size":100,
+        "size": 100,
         "stroke": "black"
       },
       "encoding": {
@@ -63,21 +52,14 @@
               "100"
             ],
             "range": [
-              "white",
               "darkgreen",
+              "forestgreen",
               "lightgreen",
               "yellow",
               "red",
               "black"
             ]
           }
-        },
-        "opacity": {
-          "condition": {
-            "param": "percentage_bleaching",
-            "value": 0.6
-          },
-          "value": 0.2
         },
         "tooltip": [
           {
