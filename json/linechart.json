@@ -1,33 +1,69 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-    "width": 1000,
-    "height": 500,
-    "title": "Average CO₂ Emissions per capita in Australia",
-    "data": {
-        "url": "https://raw.githubusercontent.com/anay0012/FIT3179-Assignment-2/main/data/co-emissions-per-capita%20new.csv"
-    },
-    "transform": [
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "CO₂ emissions per capita for Australia over time",
+    "layer": [
         {
-            "filter": "lower(trim(datum.Entity)) === 'australia'"
+            "data": {
+                "url": "https://raw.githubusercontent.com/anay0012/FIT3179-Assignment-2/main/data/co-emissions-per-capita%20new.csv",
+                "format": {
+                    "type": "csv"
+                }
+            },
+            "transform": [
+                {
+                    "filter": "datum.Entity === 'Australia'"
+                },
+                {
+                    "filter": "datum['Annual CO2 emissions (per capita)'] != null"
+                }
+            ],
+            "mark": {
+                "type": "line",
+                "point": true
+            },
+            "encoding": {
+                "x": {
+                    "field": "Year",
+                    "type": "temporal",
+                    "title": "Year"
+                },
+                "y": {
+                    "field": "Annual CO2 emissions (per capita)",
+                    "type": "quantitative",
+                    "title": "CO₂ Emissions per Capita (metric tons)"
+                },
+                "tooltip": [
+                    {
+                        "field": "Year",
+                        "type": "temporal"
+                    },
+                    {
+                        "field": "Annual CO2 emissions (per capita)",
+                        "type": "quantitative"
+                    }
+                ]
+            }
         },
         {
-            "calculate": "toNumber(datum.Year)",
-            "as": "YearNum"
-        },
-        {
-            "calculate": "toNumber(replace(datum['Annual CO2 emissions (per capita)'], '\\.', ''))",
-            "as": "Emissions"
+            "mark": {
+                "type": "text",
+                "align": "right",
+                "baseline": "middle",
+                "fontSize": 14
+            },
+            "encoding": {
+                "x": {
+                    "value": 1985
+                },
+                "y": {
+                    "value": 140000000
+                },
+                "text": {
+                    "value": "High emissions in the 1980s due to coal-heavy energy, industry, and exports."
+                }
+            }
         }
     ],
-    "mark": "line",
-    "encoding": {
-        "x": {
-            "field": "YearNum",
-            "type": "quantitative"
-        },
-        "y": {
-            "field": "Emissions",
-            "type": "quantitative"
-        }
-    }
+    "width": 600,
+    "height": 400
 }
