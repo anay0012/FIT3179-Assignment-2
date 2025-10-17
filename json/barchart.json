@@ -2,9 +2,6 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 1000,
     "height": 500,
-    "title": {
-        "text": "Ocean Temperatures at Surrounding Countries"
-    },
     "data": {
         "url": "https://raw.githubusercontent.com/anay0012/FIT3179-Assignment-2/refs/heads/main/data/global_bleaching_environmental.csv"
     },
@@ -34,19 +31,6 @@
                         "type": "quantitative"
                     }
                 ]
-            }
-        },
-        {
-            "mark": {
-                "type": "text",
-                "align": "right",
-                "baseline": "middle",
-                "fontSize": 14
-            },
-            "encoding": {
-                "text": {
-                    "value": "Turbidity reflets how cloudy, opaque or dirty the water is."
-                }
             }
         },
         {
@@ -83,6 +67,7 @@
     "params": [
         {
             "name": "Date_Year",
+            "value":1980,
             "bind": {
                 "input": "select",
                 "options": [
